@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev -p 2002",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "deploy": "firebase deploy --only functions,hosting"
   },
   "dependencies": {
     "firebase": "^8.1.2",

@@ -26,4 +26,4 @@ export const getInfo = (user) => {
   return data;
 };
 
-export const publicKey = "pk_test_12e978826733907ac74f8a409a5c504b24e7586d";
+export const publicKey = "6Ld03GgaAAAAAEbBBa431UPcgsHstxQGgWLxACuE";

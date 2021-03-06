@@ -23,7 +23,6 @@ function product({ product, handleApply }) {
         <p className='price'>N {product.product_price}</p>
       </div>
       <div className="btn_holder">
-      {/* <Link href="/success"> */}
       <button
               className="btn btn-primary"
               disabled={snapshot.userInfo?.payment_due !== 0}
@@ -31,7 +30,6 @@ function product({ product, handleApply }) {
             >
               Request
             </button>
-        {/* </Link> */}
             </div>
     </div>
   );

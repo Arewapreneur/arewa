@@ -9,7 +9,6 @@ import First from "../../components/account/first";
 import Second from "../../components/account/second";
 import Modal from "../../components/modal/modal";
 import Link from "next/link";
-import { nibss } from 'innovation-sandbox'
 
 const Index = () => {
   const snapshot = useProxy(store);

@@ -195,9 +195,11 @@ const Index = () => {
                   onChange={handleChange}
                 />
               </div>
-              <p className="text-mini text-gray">
+              <Link href="">
+                <p className="text-mini text-gray">
                 Why do I need to input my BVN ?
               </p>
+              </Link>
               <div className="btn-holder-2 ">
                 <div />
                 <button

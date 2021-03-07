@@ -31,14 +31,14 @@ const Second = ({ accountInfo, setStep, setAccountInfo }) => {
       <div className="form-group mb-2">
         <label className="text-mini">Bank Name</label>
         <select
-          className="form-input mt-1"
+          className="form-input mt-1 text-gray"
           value={accountInfo.bank_name}
           name="bank_name"
           onChange={handleChange}
         >
-          <option value="">Select Bank</option>
+          <option className="text-gray" value="">Select Bank</option>
           {banks.map((bank) => (
-            <option key={bank.code} value={bank.name}>
+            <option className="text-gray" key={bank.code} value={bank.name}>
               {bank.name}
             </option>
           ))}

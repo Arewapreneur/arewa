@@ -7,7 +7,7 @@ import { useProxy } from "valtio";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-const Validation = () => {
+const Profile = () => {
 
 const validation = {
   BVN:"12345678901",
@@ -36,28 +36,24 @@ useEffect(() => {
   return (
     <Layout>
       <Head>
-          <title>Validation</title>
+          <title>Profile</title>
       </Head>
       <div className="dashboard text-left">
         <div className="">
-        <h1>BVN Verification Completed</h1>
+        <h1>Welcome, Uchenna </h1>
         <p> BVN: <span className="text-primary "> {validation.BVN}</span></p>
         <p> First Name: <span className="text-primary"> {validation.FirstName}</span></p>
         <p> Middle Name : <span className="text-primary"> {validation.MiddleName}</span></p>
         <p> Last Name: <span className="text-primary"> {validation.LastName} </span></p>
         <p> Date Of Birth : <span className="text-primary"> {validation.DateOfBirth} </span></p>
         <p> Phone Number : <span className="text-primary"> {validation.PhoneNumber} </span></p>
-        <p> Registration Date :  <span className="text-primary"> {validation.RegistrationDate}</span></p>
-        <p> Enrollment Bank :  <span className="text-primary"> {validation.EnrollmentBank}</span></p>
-        <p>Enrollment Branch : <span className="text-primary"> {validation.EnrollmentBranch} </span></p>
-        <p> WatchListed : <span className="text-gprimary"> {validation.WatchListed} </span></p>
         </div>
-        <Link href="/account">
-          <button className="btn btn-primary mt-2">Continue</button>
+        <Link href="/dashboard">
+          <button className="btn btn-primary mt-2">Back to Home</button>
         </Link>
       </div>
     </Layout>
   )
 };
 
-export default Validation;
+export default Profile;

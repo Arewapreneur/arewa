@@ -119,7 +119,7 @@ function products() {
               <p className="text-gray mt-1">
                 You need update your account information to continue.
               </p>
-              <Link href="/account">
+              <Link href="/bvn">
                 <button className="btn btn-primary mt-2">Update Now</button>
               </Link>
             </div>

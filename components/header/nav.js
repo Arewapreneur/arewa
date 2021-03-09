@@ -44,7 +44,7 @@ const Nav = () => {
                 </Link>
               </div>
               <div>
-                <Link href="/account">
+                <Link href="/profile">
                   <a className="sub-heading">Profile</a>
                 </Link>
               </div>

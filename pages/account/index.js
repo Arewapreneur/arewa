@@ -148,69 +148,15 @@ const Index = () => {
       <div className="container">
         <div className="account">
           <h5 className="heading" style={{ fontSize: "25px" }}>
-            Update your account
+            Gurrantor
           </h5>
           {step === 1 ? (
-            <div className="form-col mt-2">
-              <div className="form-group mb-2">
-                <label className="text-mini">First Name</label>
-                <input
-                  type="text"
-                  className="form-input mt-1"
-                  name="first_name"
-                  placeholder="Enter your first name"
-                  value={accountInfo.first_name}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="form-group mb-2">
-                <label className="text-mini">Last Name</label>
-                <input
-                  type="text"
-                  className="form-input mt-1"
-                  name="last_name"
-                  placeholder="Enter your last name"
-                  value={accountInfo.last_name}
-                  onChange={handleChange}
-                />
-              </div>
-              <label className="text-mini">Phone</label>
-              <div className="phone-input">
-                <p>+234</p>
-                <p className="text-normal">
-                  0{splitNumber(snapshot.user?.phoneNumber || "")}
-                </p>
-              </div>
-              <p className="text-mini text-gray mb-2">
-                Must be the phone number linked to your BVN
-              </p>
-              <div className="form-group mb-1">
-                <label className="text-mini">Bank Verification Number</label>
-                <input
-                  type="number"
-                  className="form-input mt-1"
-                  name="bvn"
-                  placeholder="Enter your BVN"
-                  value={accountInfo.bvn}
-                  onChange={handleChange}
-                />
-              </div>
-              <Link href="">
-                <p className="text-mini text-gray">
-                Why do I need to input my BVN ?
-              </p>
-              </Link>
-              <div className="btn-holder-2 ">
-                <div />
-                <button
-                  className="btn btn-primary"
-                  style={{ width: "120px" }}
-                  onClick={() => setStep(2)}
-                >
-                  Next
-                </button>
-              </div>
-            </div>
+            <Second
+              handleChange={handleChange}
+              accountInfo={accountInfo}
+              setAccountInfo={setAccountInfo}
+              setStep={setStep}
+            />
           ) : (
               <Second
                 handleChange={handleChange}
@@ -222,16 +168,10 @@ const Index = () => {
           {step === 3 && (
             <Modal>
               <div className="pop-message">
-                <img src={face} height={55} width={55} />
-                <h1 className="heading mb-3">Mun gode!</h1>
-                <p className="sub-heading">Account Updated</p>
+                <img src={face} height={70} width={70} />
+                <p className="sub-heading mt-2">Account Updated</p>
                 <p className="text-gray mt-1">
                   Your account details was updated successfully!
-                </p>
-                <p className="text-gray mt-1">
-                  Congratulation! Your request is successfully made. Kindly wait
-                  for call from us and subsequent personal and business verification.
-                  Thanks.
                 </p>
                 <Link href="/dashboard">
                   <button className="btn btn-primary mt-2">Back to Home</button>

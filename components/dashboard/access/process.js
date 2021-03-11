@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { InputMoney } from "../../formats/money";
-import Slider from "react-input-slider";
 import Modal from "../../modal/modal";
 import store from "../../../store/store";
 import { useProxy } from "valtio";
@@ -10,22 +8,14 @@ import { snapshot } from "valtio";
 const Process = ({ close, product }) => {
   const snapshot = useProxy(store);
   const [sent, setSent] = useState(false);
-  const [loanSlider, setSlider] = useState(5);
   const [loanInfo, setInfo] = useState({
     payment: product.product_price,
     product: {
       product_name: product.product_name,
       product_price: product.product_price,
     },
+    tenure: product.product_tenure,
   });
-
-  // const setTenure = (amount, rate) => {
-  //   setInfo({
-  //     ...loanInfo,
-  //     tenure: amount,
-  //     rate,
-  //   });
-  // };
 
   const requestLoan = () => {
     store.loading = true;
@@ -35,7 +25,7 @@ const Process = ({ close, product }) => {
       .set({
         ...snapshot.userInfo,
         amountborrowed: loanInfo.product.product_price,
-      tenure: loanInfo.tenure,
+        tenure: loanInfo.tenure,
         product: loanInfo.product,
       })
       .then(() => {
@@ -44,23 +34,6 @@ const Process = ({ close, product }) => {
       });
   };
 
-  useEffect(() => {
-    setInfo({
-      ...loanInfo,
-      amount: loanSlider * 1000,
-    });
-  }, [loanSlider]);
-
-  // useEffect(() => {
-  //   if (loanInfo.rate != 0) {
-  //     setInfo({
-  //       ...loanInfo,
-  //       payment: Math.floor(
-  //         (loanInfo.rate / 100) * loanInfo.amount + loanInfo.amount
-  //       ),
-  //     });
-  //   }
-  // }, [loanInfo.tenure, loanInfo.amount]);
   return (
     <div className="process">
       <span className="back text-mini" onClick={close}>

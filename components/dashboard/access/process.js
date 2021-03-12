@@ -19,15 +19,15 @@ const Process = ({ close, product }) => {
 
   const requestLoan = () => {
     store.loading = true;
-    console.log(snapshot.userInfo)
-    console.log(snapshot.user.uid)
+    console.log(snapshot.userInfo);
+    console.log(snapshot.user.uid);
     firebase
       .database()
       .ref("userinfo/" + snapshot.user.uid)
       .set({
         ...snapshot.userInfo,
         amountborrowed: loanInfo.product.product_price,
-      // tenure: loanInfo.tenure,
+        // tenure: loanInfo.tenure,
         product: loanInfo.product,
         time: Date.now(),
       })
@@ -38,29 +38,35 @@ const Process = ({ close, product }) => {
   };
 
   return (
-    <div className="process">
+    <div className="product-details process">
       <span className="back text-mini" onClick={close}>
         <img src={require("../../../public/assets/go_back.svg")} />
         Go Back
       </span>
-      <div className="content">
-        <p className="sub-heading">{product.product_name}</p>
-        <img src={product.product_img} alt={`${product.product_name} img`} />
+      <div>
+        <div className="d-flex">
+          <div className="product_image">
+            <img src="https://via.placeholder.com/150" alt="product-image" />
+          </div>
 
-        <div className="mt-3" style={{ marginBottom: "0" }}>
-          <p>
-            Price - {" "}
-            <span className="text-grey">{`N ${product.product_price}`}</span>
-          </p>
+          <div className="product_details">
+            <p className="product_name">{product.product_name}</p>
+            <div className="d-flex stocknterm">
+              <p className="product_stock">39 Available</p>
+              <p className="product_term">32 Months</p>
+            </div>
+            <p className="product_price">$125.00</p>
 
-          <p>Product Tenure - {product.product_tenure}</p>
-
-          <p>Product Stock - {product.product_stock}</p>
+            <button className="btn btn-primary mt-3" onClick={requestLoan}>
+              Send Request
+            </button>
+          </div>
         </div>
+         <div className="product_desc">
+           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam alias inventore tempora quasi consequatur mollitia, magni omnis in aspernatur illum hic officia amet nostrum aliquam autem nobis saepe dolorum non.</p>
+         </div>
       </div>
-      <button className="btn btn-primary mt-3" onClick={requestLoan}>
-        Send Request
-      </button>
+
       {sent && (
         <Modal close={close}>
           <div className="pop-message">

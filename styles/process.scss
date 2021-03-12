@@ -1,3 +1,46 @@
+.product-details {
+  margin-top: 20px;
+
+  .d-flex {
+    display: flex;
+  }
+  .product_image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+    margin-right: 20%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  p.product_name {
+    margin-bottom: 12px;
+  }
+
+  .stocknterm {
+    justify-content: space-between;
+
+    p {
+      font-weight: normal;
+    }
+  }
+
+  .product_price {
+    margin-top: 32px;
+  }
+}
+
+.product_desc {
+  margin-top: 30px;
+
+  p {
+    font-weight: normal;
+  }
+}
+
 .process {
   position: absolute;
   top: 0;

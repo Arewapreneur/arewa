@@ -10,27 +10,26 @@ import { InputMoney, parseMoney } from "../../formats/money";
 import firebase from "../../../services/firebase";
 
 function product({ product, handleApply }) {
-
   const snapshot = useProxy(store);
 
   return (
-    <div className='product'>
-      <div className='product__img'>
+    <div className="product">
+      <div className="product__img">
         <img src={product.product_img} alt={`${product.product_name} img`} />
       </div>
       <div className="namenprice">
-        <p className='name'>{product.product_name}</p>
-        <p className='price'>N {product.product_price}</p>
+        <p className="name">{product.product_name}</p>
+        <p className="price">N {product.product_price}</p>
       </div>
       <div className="btn_holder">
-      <button
-              className="btn btn-primary"
-              disabled={snapshot.userInfo?.payment_due !== 0}
-              onClick={handleApply}
-            >
-              Request
-            </button>
-            </div>
+        <button
+          className="btn btn-primary"
+          disabled={snapshot.userInfo?.amountborrowed !== 0}
+          onClick={handleApply}
+        >
+          Request
+        </button>
+      </div>
     </div>
   );
 }

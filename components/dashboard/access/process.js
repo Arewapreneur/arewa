@@ -29,6 +29,7 @@ const Process = ({ close, product }) => {
         amountborrowed: loanInfo.product.product_price,
       // tenure: loanInfo.tenure,
         product: loanInfo.product,
+        time: Date.now(),
       })
       .then(() => {
         store.loading = false;

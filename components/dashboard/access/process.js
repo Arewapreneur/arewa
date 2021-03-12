@@ -51,10 +51,8 @@ const Process = ({ close, product }) => {
             Price - {" "}
             <span className="text-grey">{`N ${product.product_price}`}</span>
           </p>
-
-          <p>Product Tenure - {product.product_tenure}</p>
-
-          <p>Product Stock - {product.product_stock}</p>
+          <p>Product Tenure - {product.product_tenure} months</p>
+          <p>Product Stock - {product.product_stock} </p>
         </div>
       </div>
       <button className="btn btn-primary mt-3" onClick={requestLoan}>

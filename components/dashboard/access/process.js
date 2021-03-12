@@ -29,13 +29,15 @@ const Process = ({ close, product }) => {
 
   const requestLoan = () => {
     store.loading = true;
+    console.log(snapshot.userInfo)
+    console.log(snapshot.user.uid)
     firebase
       .database()
       .ref("userinfo/" + snapshot.user.uid)
       .set({
         ...snapshot.userInfo,
         amountborrowed: loanInfo.product.product_price,
-      tenure: loanInfo.tenure,
+      // tenure: loanInfo.tenure,
         product: loanInfo.product,
       })
       .then(() => {

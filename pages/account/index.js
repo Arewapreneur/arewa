@@ -7,6 +7,7 @@ import face from "../../public/assets/happy_face.svg";
 import { useProxy } from "valtio";
 import First from "../../components/account/first";
 import Second from "../../components/account/second";
+import Third from "../../components/account/third";
 import Modal from "../../components/modal/modal";
 import Link from "next/link";
 
@@ -21,6 +22,7 @@ const Index = () => {
     bank_account_number: "",
     nok_name: "",
     nok_phone: "",
+    ...snapshot.accountInfo
   });
   const [step, setStep] = useState(1);
 
@@ -39,83 +41,25 @@ const Index = () => {
     return phone;
   };
 
-  const sendSMS = () => {
-    const sms = functions.https.onRequest((req, res) => {
-      axios.post('https://sandboxapi.fsi.ng/atlabs/messaging', (err, response) => {
-        if (error) {
-          throw error;
-        }
-        atlabs.SMS.SMSService({
-          sandbox_key: "3c47f1e48aa32425b63f241aba9cf4cf",
-          payload: {
-            to: snapshot.user?.phoneNumber,
-            from: "FSI",
-            message: "Congratulation, You request are successfully made. We will get back to you soon. Thanks"
-          }
-        }).then(result => {
-          res.status(200).json({
-            result,
-            message: "Message sent"
-          }).catch(err => {
-            res.json(err)
-          })
-        })
-      })
-    })
-  }
+// useEffect(() => {
+//   if(verification){
+//     setAccountInfo({
+//       bvn: "",
+//       first_name: verification.FirstName,
+//       last_name: verification.LastName,
+//       bank_name: "",
+//       bank_account_number: "",
+//       nok_name: "",
+//       nok_phone: ""
+//     })
+//   }
 
-  const resetBVN = () => {
-    const sms = functions.https.onRequest((req, res) => {
-      axios.post('https://sandboxapi.fsi.ng/nibss/bvnr/Reset', (err, response) => {
-        if (error) {
-          throw error;
-        }
-        nibss.Bvnr.Reset({
-          sandbox_key: '3c47f1e48aa32425b63f241aba9cf4cf',
-          organisation_code: '11111'
-        }).then(result => {
-          res.status(200).json({
-            result,
-            message: "Credential Recieved"
-          }).catch(err => {
-            res.json(err)
-          })
-        })
-      })
-    })
-  }
-
-  const verifyBVN = () => {
-    const sms = functions.https.onRequest((req, res) => {
-      axios.post(
-        'https://sandboxapi.fsi.ng/nibss/bvnr/VerifySingleBVN',
-        (err, response) => {
-          if (error) {
-            throw error;
-          }
-          nibss.Bvnr.VerifySingleBVN({
-            bvn: '22285614288',
-            sandbox_key: '3c47f1e48aa32425b63f241aba9cf4cf',
-            organisation_code: '11111',
-            password: "^o'e6EXK5T ~^j2=",
-            ivkey: "eRpKTBjdOq6T67D0",
-            aes_key: "9+CZaWqfyI/fwezX",
-            host: ''
-          }).then(result => {
-            res.status(200).json({
-              result,
-              message: "Message sent"
-            }).catch(err => {
-              res.json(err)
-            })
-          })
-        })
-    })
-  }
+// }, [verification])
 
   useEffect(() => {
     store.loading = true;
-    firebase.auth().onAuthStateChanged(function (user) {
+  const unsubscribe =  firebase.auth().onAuthStateChanged(function (user) {
+      console.log(user)
       if (!user) {
         router.push("/login");
       } else {
@@ -124,16 +68,18 @@ const Index = () => {
         setShowDash(true);
         store.loading = false;
       }
-    });
+    })
+  return () => {unsubscribe()}
   }, []);
 
-  useEffect(() => {
-    if (snapshot.accountInfo) {
-      store.loading = false;
-      setAccountInfo(snapshot.accountInfo);
-    }
-  }, [snapshot.accountInfo]);
-
+  // useEffect(() => {
+  //   if (snapshot.accountInfo) {
+  //     store.loading = false;
+  //     setAccountInfo(snapshot.accountInfo);
+  //   }
+  //   console.log('snapshot')
+  // }, [snapshot.accountInfo]);
+  //
   useEffect(() => {
     if (snapshot.accountInfo) {
       let newInfo = {
@@ -143,20 +89,73 @@ const Index = () => {
       store.accountInfo = newInfo;
     }
   }, [accountInfo]);
+
   return (
     <Layout>
       <div className="container">
         <div className="account">
           <h5 className="heading" style={{ fontSize: "25px" }}>
-            Gurrantor
+            Update your account
           </h5>
           {step === 1 ? (
-            <Second
-              handleChange={handleChange}
-              accountInfo={accountInfo}
-              setAccountInfo={setAccountInfo}
-              setStep={setStep}
-            />
+            <div className="form-col mt-2">
+              <div className="form-group mb-2">
+                <label className="text-mini">First Name</label>
+                <input
+                  type="text"
+                  className="form-input mt-1"
+                  name="first_name"
+                  placeholder="Enter your first name"
+                  value={accountInfo.first_name}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group mb-2">
+                <label className="text-mini">Last Name</label>
+                <input
+                  type="text"
+                  className="form-input mt-1"
+                  name="last_name"
+                  placeholder="Enter your last name"
+                  value={accountInfo.last_name}
+                  onChange={handleChange}
+                />
+              </div>
+              <label className="text-mini">Phone</label>
+              <div className="phone-input">
+                <p>+234</p>
+                <p className="text-normal">
+                  0{splitNumber(snapshot.user?.phoneNumber || "")}
+                </p>
+              </div>
+              <p className="text-mini text-gray mb-2">
+                Must be the phone number linked to your BVN
+              </p>
+              <div className="form-group mb-1">
+                <label className="text-mini">Bank Verification Number</label>
+                <input
+                  type="number"
+                  className="form-input mt-1"
+                  name="bvn"
+                  placeholder="Enter your BVN"
+                  value={accountInfo.bvn}
+                  onChange={handleChange}
+                />
+              </div>
+              <p className="text-mini text-gray">
+                Why do I need to input my BVN ?
+              </p>
+              <div className="btn-holder-2 ">
+                <div />
+                <button
+                  className="btn btn-primary"
+                  style={{ width: "120px" }}
+                  onClick={() => setStep(2)}
+                >
+                  Next
+                </button>
+              </div>
+            </div>
           ) : (
               <Second
                 handleChange={handleChange}
@@ -168,8 +167,9 @@ const Index = () => {
           {step === 3 && (
             <Modal>
               <div className="pop-message">
-                <img src={face} height={70} width={70} />
-                <p className="sub-heading mt-2">Account Updated</p>
+                <img src={face} height={55} width={55} />
+                <h1 className="heading mb-3">Mun gode!</h1>
+                <p className="sub-heading">Account Updated</p>
                 <p className="text-gray mt-1">
                   Your account details was updated successfully!
                 </p>

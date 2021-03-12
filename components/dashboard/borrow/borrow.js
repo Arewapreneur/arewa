@@ -81,13 +81,10 @@ const Borrow = () => {
           <div>
             <p className="text-gray mt-2">Payment History</p>
             <p className="mb-1">
+              Item(s) collected:
+            </p>
+            <p className="mb-1">
               Date recieved:
-            </p>
-            <p className="mb-1">
-              Amount paid:
-            </p>
-            <p className="mb-1">
-              Payment due:
             </p>
           </div>
           <div>
@@ -108,7 +105,7 @@ const Borrow = () => {
         <div className="request ">
           <h5 className="heading mb-2">Repay your loan</h5>
           <p className="text-gray">
-            We have different methods that makes repaying your loan easy.
+            You can repay your loan with ease using any any method that is convinient for you.
           </p>
           <div className="btn-holder-2">
             <button

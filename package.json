@@ -10,6 +10,7 @@
     "deploy": "firebase deploy --only functions,hosting"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "firebase": "^8.1.2",
     "firebase-admin": "^9.5.0",
     "firebase-functions": "^3.13.2",

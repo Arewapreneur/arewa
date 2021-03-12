@@ -21,17 +21,6 @@ const validation = {
   EnrollmentBranch:"Victoria Island",
   WatchListed:"NO"
 }
-const router = useRouter();
-useEffect(() => {
-  store.loading = true;
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (!user) {
-      router.push("/login");
-    } else {
-      store.loading = false;
-    }
-  });
-}, []);
 
   return (
     <Layout>

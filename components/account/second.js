@@ -29,9 +29,34 @@ const Second = ({ accountInfo, setStep, setAccountInfo }) => {
   return (
     <div className="form-col mt-2">
       <div className="form-group mb-2">
+        <label className="text-mini">Bank Name</label>
+        <select
+          className="form-input mt-1"
+          value={accountInfo.bank_name}
+          name="bank_name"
+          onChange={handleChange}
+        >
+          <option value="">Select Bank</option>
+          {banks.map((bank) => (
+            <option key={bank.code} value={bank.name}>
+              {bank.name}
+            </option>
+          ))}
+        </select>
       </div>
       <div className="form-group mb-2">
-        <label className="text-mini">Gurrantor Full Name</label>
+        <label className="text-mini">Account Number</label>
+        <input
+          type="number"
+          className="form-input mt-1"
+          placeholder="Enter your bank account no."
+          name="bank_account_number"
+          value={accountInfo.bank_account_number}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="form-group mb-2">
+        <label className="text-mini">Next of Kin Full Name</label>
         <input
           type="text"
           className="form-input mt-1"
@@ -41,9 +66,10 @@ const Second = ({ accountInfo, setStep, setAccountInfo }) => {
           onChange={handleChange}
         />
       </div>
-      <label className="text-mini">Gurrantor Phone Number</label>
-      <div className="phone-input input">
 
+      <label className="text-mini">Next of Kin Phone Number</label>
+      <div className="phone-input input">
+        <p>+234</p>
         <input
           type="number"
           placeholder="Enter phone number"
@@ -52,7 +78,15 @@ const Second = ({ accountInfo, setStep, setAccountInfo }) => {
           onChange={handleChange}
         />
       </div>
+
       <div className="btn-holder-2 mt-3">
+        <button
+          className="btn btn-primary"
+          style={{ width: "120px" }}
+          onClick={() => setStep(1)}
+        >
+          Prev
+        </button>
         <button
           className="btn btn-primary"
           style={{ width: "120px" }}

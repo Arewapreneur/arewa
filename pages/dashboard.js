@@ -3,7 +3,7 @@ import Layout from "../components/layout";
 import Head from "next/head";
 import firebase from "../services/firebase";
 import Borrow from "../components/dashboard/borrow/borrow";
-import Products from '../components/dashboard/access/products'
+import Products from "../components/dashboard/access/products";
 import store from "../store/store";
 import { useProxy } from "valtio";
 import { useRouter } from "next/router";
@@ -32,37 +32,6 @@ const Dashboard = () => {
       });
   };
 
-  const getInvestment = (user) => {
-    let data = [];
-    firebase
-      .database()
-      .ref("userinfo/" + user.uid)
-      .child("investments")
-      .on("child_added", (snapshot) => {
-        data.push(snapshot.val());
-
-        console.log("investment:", snapshot.investments);
-        store.investments.total = calculateTotal(data);
-        store.investments.earnings = calculateEarnings(data);
-      });
-  };
-
-  const calculateTotal = (data) => {
-    let total = 0;
-    for (let i in data) {
-      total += data[i].amount;
-    }
-    return total;
-  };
-
-  const calculateEarnings = (data) => {
-    let investment = 0;
-    for (let i in data) {
-      investment += data[i].investment;
-    }
-    return investment;
-  };
-
   const createUserInfo = (user) => {
     firebase.database().ref("userinfo").child(user.uid).set(
       {
@@ -81,7 +50,6 @@ const Dashboard = () => {
       } else {
         store.user = user;
         getInfo(user);
-        getInvestment(user);
         setShowDash(true);
         store.loading = false;
       }
@@ -90,7 +58,7 @@ const Dashboard = () => {
   return showDash ? (
     <Layout>
       <Head>
-          <title>ArewaPrenuer</title>
+        <title>ArewaPrenuer</title>
       </Head>
       <div className="dashboard">
         <div className="tabs">

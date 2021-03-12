@@ -3,12 +3,17 @@ import firebase from "../../services/firebase";
 import Layout from "../../components/layout";
 import { getInfo } from "../../services/userService";
 import store from "../../store/store";
-import face from "../../public/assets/happy_face.svg";
+
 import { useProxy } from "valtio";
 import First from "../../components/account/first";
+<<<<<<< HEAD
 import Second from "../../components/account/second";
 import Third from "../../components/account/third";
+=======
+>>>>>>> d01ea426525e003b0d903ae1ea3af182e9880d83
 import Modal from "../../components/modal/modal";
+import face from "../../public/assets/happy_face.svg";
+
 import Link from "next/link";
 
 const Index = () => {
@@ -18,6 +23,8 @@ const Index = () => {
     bvn: "",
     first_name: "",
     last_name: "",
+    Date_Of_Birth: "",
+    PhoneNumber: "",
     bank_name: "",
     bank_account_number: "",
     nok_name: "",
@@ -35,6 +42,7 @@ const Index = () => {
     });
   };
 
+<<<<<<< HEAD
   const splitNumber = (number) => {
     let phone = number.split("");
     phone.splice(0, 4);
@@ -56,6 +64,8 @@ const Index = () => {
 
 // }, [verification])
 
+=======
+>>>>>>> d01ea426525e003b0d903ae1ea3af182e9880d83
   useEffect(() => {
     store.loading = true;
   const unsubscribe =  firebase.auth().onAuthStateChanged(function (user) {
@@ -72,6 +82,7 @@ const Index = () => {
   return () => {unsubscribe()}
   }, []);
 
+<<<<<<< HEAD
   // useEffect(() => {
   //   if (snapshot.accountInfo) {
   //     store.loading = false;
@@ -80,6 +91,40 @@ const Index = () => {
   //   console.log('snapshot')
   // }, [snapshot.accountInfo]);
   //
+=======
+  const fetchBVN = async () => {
+    await fetch("https://verify-bvn.herokuapp.com/verify/bvn", {
+      method: "POST",
+      body: JSON.stringify({
+        bvn: 12345678901,
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success:", data);
+        setAccountInfo({
+          ...accountInfo,
+          [name]: value,
+        });
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    setStep(2);
+  };
+
+  useEffect(() => {
+    if (snapshot.accountInfo) {
+      store.loading = false;
+      setAccountInfo(snapshot.accountInfo);
+    }
+  }, [snapshot.accountInfo]);
+
+>>>>>>> d01ea426525e003b0d903ae1ea3af182e9880d83
   useEffect(() => {
     if (snapshot.accountInfo) {
       let newInfo = {
@@ -99,6 +144,7 @@ const Index = () => {
           </h5>
           {step === 1 ? (
             <div className="form-col mt-2">
+<<<<<<< HEAD
               <div className="form-group mb-2">
                 <label className="text-mini">First Name</label>
                 <input
@@ -131,6 +177,8 @@ const Index = () => {
               <p className="text-mini text-gray mb-2">
                 Must be the phone number linked to your BVN
               </p>
+=======
+>>>>>>> d01ea426525e003b0d903ae1ea3af182e9880d83
               <div className="form-group mb-1">
                 <label className="text-mini">Bank Verification Number</label>
                 <input
@@ -142,21 +190,36 @@ const Index = () => {
                   onChange={handleChange}
                 />
               </div>
+<<<<<<< HEAD
               <p className="text-mini text-gray">
                 Why do I need to input my BVN ?
               </p>
+=======
+              <Link href="">
+                <p className="text-mini text-gray">
+                  Why do I need to input my BVN ?
+                </p>
+              </Link>
+
+>>>>>>> d01ea426525e003b0d903ae1ea3af182e9880d83
               <div className="btn-holder-2 ">
                 <div />
                 <button
                   className="btn btn-primary"
                   style={{ width: "120px" }}
+<<<<<<< HEAD
                   onClick={() => setStep(2)}
+=======
+                  onClick={fetchBVN}
+                  disabled={accountInfo.bvn == ""}
+>>>>>>> d01ea426525e003b0d903ae1ea3af182e9880d83
                 >
                   Next
                 </button>
               </div>
             </div>
           ) : (
+<<<<<<< HEAD
               <Second
                 handleChange={handleChange}
                 accountInfo={accountInfo}
@@ -164,6 +227,15 @@ const Index = () => {
                 setStep={setStep}
               />
             )}
+=======
+            <First
+              handleChange={handleChange}
+              accountInfo={accountInfo}
+              setAccountInfo={setAccountInfo}
+              setStep={setStep}
+            />
+          )}
+>>>>>>> d01ea426525e003b0d903ae1ea3af182e9880d83
           {step === 3 && (
             <Modal>
               <div className="pop-message">

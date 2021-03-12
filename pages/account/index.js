@@ -95,7 +95,7 @@ const Index = () => {
       <div className="container">
         <div className="account">
           <h5 className="heading" style={{ fontSize: "25px" }}>
-            Update your account
+          Your Account Information
           </h5>
           {step === 1 ? (
             <div className="form-col mt-2">
@@ -129,9 +129,9 @@ const Index = () => {
                 </p>
               </div>
               <p className="text-mini text-gray mb-2">
-                Must be the phone number linked to your BVN
+
               </p>
-              <div className="form-group mb-1">
+              <div className="form-group mb-1 mt-3">
                 <label className="text-mini">Bank Verification Number</label>
                 <input
                   type="number"
@@ -143,7 +143,7 @@ const Index = () => {
                 />
               </div>
               <p className="text-mini text-gray">
-                Why do I need to input my BVN ?
+
               </p>
               <div className="btn-holder-2 ">
                 <div />

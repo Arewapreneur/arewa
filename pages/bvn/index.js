@@ -30,7 +30,7 @@ const handleSubmit = async (e) => {
   console.log("clikin")
   try {const res = await axios.post("https://verify-bvn.herokuapp.com/verify/bvn", {bvn: bvn})
   store.accountInfo = {
-    bvn: "",
+    bvn: res.data.verification.BVN,
     first_name: res.data.verification.FirstName,
     last_name: res.data.verification.LastName,
     bank_name: "",

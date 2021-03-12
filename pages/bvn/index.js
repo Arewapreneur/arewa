@@ -12,13 +12,20 @@ import Modal from "../../components/modal/modal";
 import Link from "next/link";
 import axios from "axios";
 import {withRouter} from 'next/router'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 const Index = () => {
   const [{details, bvn}, setState] = useState({
     bvn: '12345678901',
     details: '',
-    loading: true
+    loading: false
   })
+
+  const style = {
+        height: 100,
+        width: 100
+      };
 
 const snapshot = useProxy(store);
 const handleChange = (e) => {
@@ -27,7 +34,6 @@ const handleChange = (e) => {
 
 const handleSubmit = async (e) => {
   e.preventDefault()
-  console.log("clikin")
   try {const res = await axios.post("https://verify-bvn.herokuapp.com/verify/bvn", {bvn: bvn})
   store.accountInfo = {
     bvn: res.data.verification.BVN,
@@ -64,8 +70,17 @@ const handleSubmit = async (e) => {
                 />
                   <button type="submit" className="btn btn-primary mt-2">Verify</button>
                   {snapshot.accountInfo &&
+                    <Loader
+                     type="Puff"
+                     color="#00BFFF"
+                     height={100}
+                     width={100}
+                     timeout={3000} //3 secs
+                   />
+                  }
+                  {snapshot.accountInfo &&
                     <div>
-                      <h1>Verified</h1>
+                      <h1>Verified <span> <img style={style} src="https://bigppcgeek.files.wordpress.com/2011/06/tick.jpg" /> </span> </h1>
                       <Link href="/account">
                         <button className="btn btn-primary mt-2">Continue</button>
                       </Link>

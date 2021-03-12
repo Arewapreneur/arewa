@@ -48,13 +48,13 @@ const Process = ({ close, product }) => {
 
         <div className="mt-3" style={{ marginBottom: "0" }}>
           <p>
-            Price -{" "}
+            Price - {" "}
             <span className="text-grey">{`N ${product.product_price}`}</span>
           </p>
 
-          <p>{product.product_tenure}</p>
+          <p>Product Tenure - {product.product_tenure}</p>
 
-          <p>{product.product_stock}</p>
+          <p>Product Stock - {product.product_stock}</p>
         </div>
       </div>
       <button className="btn btn-primary mt-3" onClick={requestLoan}>

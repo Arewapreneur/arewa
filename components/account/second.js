@@ -68,7 +68,7 @@ const Second = ({ accountInfo, setStep, setAccountInfo }) => {
       </div>
 
       <label className="text-mini">Guarrantor Phone Number</label>
-      <div className="phone-input input">
+      <div className="phone-input">
         <p>+234</p>
         <input
           type="number"

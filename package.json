@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p ",
+    "dev": "next dev -p 2002",
     "build": "next build",
     "start": "next start -p $PORT",
     "export": "next export",
@@ -23,6 +23,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-input-slider": "^6.0.0",
+    "react-loader-spinner": "^4.0.0",
     "react-paystack": "^3.0.3",
     "sass": "^1.30.0",
     "valtio": "^0.4.1"

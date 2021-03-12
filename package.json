@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
+    "out": "next build && next export",
     "deploy2": "cross-env NODE_ENV=production firebase deploy --only functions,hosting",
     "deploy": "firebase deploy --only functions,hosting"
   },

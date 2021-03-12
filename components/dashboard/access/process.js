@@ -46,7 +46,7 @@ const Process = ({ close, product }) => {
       <div>
         <div className="d-flex">
           <div className="product_image">
-            <img src="https://via.placeholder.com/150" alt="product-image" />
+            <img src={product.product_img} alt="product-image" />
           </div>
 
           <div className="product_details">
@@ -62,9 +62,14 @@ const Process = ({ close, product }) => {
             </button>
           </div>
         </div>
-         <div className="product_desc">
-           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam alias inventore tempora quasi consequatur mollitia, magni omnis in aspernatur illum hic officia amet nostrum aliquam autem nobis saepe dolorum non.</p>
-         </div>
+        <div className="product_desc">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
+            alias inventore tempora quasi consequatur mollitia, magni omnis in
+            aspernatur illum hic officia amet nostrum aliquam autem nobis saepe
+            dolorum non.
+          </p>
+        </div>
       </div>
 
       {sent && (

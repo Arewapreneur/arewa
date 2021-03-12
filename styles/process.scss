@@ -16,20 +16,26 @@
     }
   }
 
-  p.product_name {
-    margin-bottom: 12px;
-  }
-
-  .stocknterm {
-    justify-content: space-between;
-
-    p {
-      font-weight: normal;
+  .product_details {
+    p.product_name {
+      margin-bottom: 12px;
     }
-  }
 
-  .product_price {
-    margin-top: 32px;
+    .stocknterm {
+      justify-content: space-between;
+
+      p {
+        font-weight: normal;
+      }
+
+      p.product_stock {
+        margin-right: 30px;
+      }
+    }
+
+    .product_price {
+      margin-top: 32px;
+    }
   }
 }
 

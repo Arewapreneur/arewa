@@ -52,10 +52,10 @@ const Process = ({ close, product }) => {
           <div className="product_details">
             <p className="product_name">{product.product_name}</p>
             <div className="d-flex stocknterm">
-              <p className="product_stock">39 Available</p>
-              <p className="product_term">32 Months</p>
+              <p className="product_stock">{product.product_stock} Available</p>
+              <p className="product_term">{product.product_tenure} Months</p>
             </div>
-            <p className="product_price">$125.00</p>
+            <p className="product_price">{`N ${product.product_price}`}</p>
 
             <button className="btn btn-primary mt-3" onClick={requestLoan}>
               Send Request
@@ -63,12 +63,7 @@ const Process = ({ close, product }) => {
           </div>
         </div>
         <div className="product_desc">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam
-            alias inventore tempora quasi consequatur mollitia, magni omnis in
-            aspernatur illum hic officia amet nostrum aliquam autem nobis saepe
-            dolorum non.
-          </p>
+          <p>{product.product_description}</p>
         </div>
       </div>
 

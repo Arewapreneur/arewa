@@ -20,7 +20,9 @@ function products() {
       product_name: "Butterfly sewing machine",
       product_price: 20000,
       product_stock: 30,
-      product_tenure: 3,
+      product_tenure: 9,
+      product_description:
+        "Butterfly electronic sewing machines. These work by a single motor that sends an electrical impulse to move the needle. Butterfly sewing machines have been the preferred choice of most Nigerian fashion designers.",
     },
     {
       product_img:
@@ -28,7 +30,9 @@ function products() {
       product_name: "Sumec Generator",
       product_price: 24000,
       product_stock: 12,
-      product_tenure: 3,
+      product_tenure: 16,
+      product_description:
+        "FIRMAN is a generating equipment brand under SUMEC Group.As an important member of SINOMACH, a Fortune 500 enterprise, SUMEC Group was founded in 1978 and specializes in trade and service, engineering contracting, and investment development.  ",
     },
     {
       product_img:
@@ -36,7 +40,9 @@ function products() {
       product_name: "Binatone Blender",
       product_price: 14000,
       product_stock: 9,
-      product_tenure: 3,
+      product_tenure: 32,
+      product_description:
+        "Binatone Blenders & Prices in Nigeria · Binatone Professional Blender 1500W — (NGN) 30,000 naira — (NGN) 64,000 naira · Binatone Blender & Smoothie make",
     },
   ];
 

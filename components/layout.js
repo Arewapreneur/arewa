@@ -7,7 +7,7 @@ import Spinner from "./loader/spinner";
 
 const Layout = ({ children }) => {
   const snapshot = useProxy(store);
-
+  console.log(snapshot)
   return (
     <div className="layout">
       <Head>

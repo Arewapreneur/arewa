@@ -9,6 +9,7 @@ const store = proxy({
   showLogin: false,
   userInfo: null,
   accountInfo: null,
+  amountborrowed: 0,
   investments: {
     total: 0,
     earnings: 0,

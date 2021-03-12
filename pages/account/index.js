@@ -3,12 +3,12 @@ import firebase from "../../services/firebase";
 import Layout from "../../components/layout";
 import { getInfo } from "../../services/userService";
 import store from "../../store/store";
-
+import face from "../../public/assets/happy_face.svg";
 import { useProxy } from "valtio";
 import First from "../../components/account/first";
+import Second from "../../components/account/second";
+import Third from "../../components/account/third";
 import Modal from "../../components/modal/modal";
-import face from "../../public/assets/happy_face.svg";
-
 import Link from "next/link";
 
 const Index = () => {
@@ -18,12 +18,11 @@ const Index = () => {
     bvn: "",
     first_name: "",
     last_name: "",
-    Date_Of_Birth: "",
-    PhoneNumber: "",
     bank_name: "",
     bank_account_number: "",
     nok_name: "",
     nok_phone: "",
+    ...snapshot.accountInfo
   });
   const [step, setStep] = useState(1);
 
@@ -36,9 +35,31 @@ const Index = () => {
     });
   };
 
+  const splitNumber = (number) => {
+    let phone = number.split("");
+    phone.splice(0, 4);
+    return phone;
+  };
+
+// useEffect(() => {
+//   if(verification){
+//     setAccountInfo({
+//       bvn: "",
+//       first_name: verification.FirstName,
+//       last_name: verification.LastName,
+//       bank_name: "",
+//       bank_account_number: "",
+//       nok_name: "",
+//       nok_phone: ""
+//     })
+//   }
+
+// }, [verification])
+
   useEffect(() => {
     store.loading = true;
-    firebase.auth().onAuthStateChanged(function (user) {
+  const unsubscribe =  firebase.auth().onAuthStateChanged(function (user) {
+      console.log(user)
       if (!user) {
         router.push("/login");
       } else {
@@ -47,41 +68,18 @@ const Index = () => {
         setShowDash(true);
         store.loading = false;
       }
-    });
+    })
+  return () => {unsubscribe()}
   }, []);
 
-  const fetchBVN = async () => {
-    await fetch("https://verify-bvn.herokuapp.com/verify/bvn", {
-      method: "POST",
-      body: JSON.stringify({
-        bvn: 12345678901,
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Success:", data);
-        setAccountInfo({
-          ...accountInfo,
-          [name]: value,
-        });
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-
-    setStep(2);
-  };
-
-  useEffect(() => {
-    if (snapshot.accountInfo) {
-      store.loading = false;
-      setAccountInfo(snapshot.accountInfo);
-    }
-  }, [snapshot.accountInfo]);
-
+  // useEffect(() => {
+  //   if (snapshot.accountInfo) {
+  //     store.loading = false;
+  //     setAccountInfo(snapshot.accountInfo);
+  //   }
+  //   console.log('snapshot')
+  // }, [snapshot.accountInfo]);
+  //
   useEffect(() => {
     if (snapshot.accountInfo) {
       let newInfo = {
@@ -91,52 +89,75 @@ const Index = () => {
       store.accountInfo = newInfo;
     }
   }, [accountInfo]);
+
   return (
     <Layout>
       <div className="container">
         <div className="account">
           <h5 className="heading" style={{ fontSize: "25px" }}>
-            Update your account
+            Your Account Information
           </h5>
           {step === 1 ? (
             <div className="form-col mt-2">
-              <div className="form-group mb-1">
+              <div className="form-group mb-2">
+                <label className="text-mini">First Name</label>
+                <input
+                  type="text"
+                  className="form-input mt-1"
+                  name="first_name"
+                  placeholder="Enter your first name"
+                  value={accountInfo.first_name}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group mb-2">
+                <label className="text-mini">Last Name</label>
+                <input
+                  type="text"
+                  className="form-input mt-1"
+                  name="last_name"
+                  placeholder="Enter your last name"
+                  value={accountInfo.last_name}
+                  onChange={handleChange}
+                />
+              </div>
+              <label className="text-mini">Phone</label>
+              <div className="phone-input">
+                <p>+234</p>
+                <p className="text-normal">
+                  0{splitNumber(snapshot.user?.phoneNumber || "")}
+                </p>
+              </div>
+              <div className="form-group mb-3">
                 <label className="text-mini">Bank Verification Number</label>
                 <input
                   type="number"
-                  className="form-input mt-1"
+                  className="form-input mt-3"
                   name="bvn"
                   placeholder="Enter your BVN"
                   value={accountInfo.bvn}
                   onChange={handleChange}
                 />
               </div>
-              <Link href="">
-                <p className="text-mini text-gray">
-                  Why do I need to input my BVN ?
-                </p>
-              </Link>
-
               <div className="btn-holder-2 ">
                 <div />
                 <button
                   className="btn btn-primary"
                   style={{ width: "120px" }}
-                  onClick={fetchBVN}
-                  disabled={accountInfo.bvn == ""}
+                  onClick={() => setStep(2)}
                 >
                   Next
                 </button>
               </div>
             </div>
           ) : (
-            <First
-              handleChange={handleChange}
-              accountInfo={accountInfo}
-              setAccountInfo={setAccountInfo}
-              setStep={setStep}
-            />
-          )}
+              <Second
+                handleChange={handleChange}
+                accountInfo={accountInfo}
+                setAccountInfo={setAccountInfo}
+                setStep={setStep}
+              />
+            )}
           {step === 3 && (
             <Modal>
               <div className="pop-message">

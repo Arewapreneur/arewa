@@ -80,27 +80,12 @@ const Borrow = () => {
           </div>
           <div>
             <p className="text-gray mt-2">Payment History</p>
-            <p className="mb-1">
-              Date recieved:
-            </p>
-            <p className="mb-1">
-              Amount paid:
-            </p>
-            <p className="mb-1">
-              Payment due:
-            </p>
-          </div>
-          <div>
-            <p className="text-gray mt-2">Other Activities</p>
-            <h5 className="sub-heading mb-1">
-              {Date.now}
-            </h5>
           </div>
           {snapshot.userInfo?.amountborrowed != 0 && (
             <div>
               <p className="text-gray mb-1 mt-1">Payment Due</p>
               <h5 className="sub-heading mb-1">
-                NGN {InputMoney(snapshot.userInfo?.payment_due)}.00
+                NGN {InputMoney(snapshot.userInfo?.amountborrowed)}.00
               </h5>
             </div>
           )}
@@ -108,7 +93,7 @@ const Borrow = () => {
         <div className="request ">
           <h5 className="heading mb-2">Repay your loan</h5>
           <p className="text-gray">
-            We have different methods that makes repaying your loan easy.
+            You can repay your loan with ease using any any method that is convinient for you.
           </p>
           <div className="btn-holder-2">
             <button
@@ -119,7 +104,7 @@ const Borrow = () => {
             //   Request Loan
             // </button>
             // <button
-              className="btn btn-outline "
+              className="btn btn-primary "
               disabled={snapshot.userInfo?.amountborrowed === 0}
               onClick={() => setPayment(!payment)}
             >

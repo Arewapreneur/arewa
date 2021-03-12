@@ -19,13 +19,15 @@ const Process = ({ close, product }) => {
 
   const requestLoan = () => {
     store.loading = true;
+    console.log(snapshot.userInfo)
+    console.log(snapshot.user.uid)
     firebase
       .database()
       .ref("userinfo/" + snapshot.user.uid)
       .set({
         ...snapshot.userInfo,
         amountborrowed: loanInfo.product.product_price,
-        tenure: loanInfo.tenure,
+      // tenure: loanInfo.tenure,
         product: loanInfo.product,
         time: Date.now(),
       })
@@ -47,13 +49,13 @@ const Process = ({ close, product }) => {
 
         <div className="mt-3" style={{ marginBottom: "0" }}>
           <p>
-            Price -{" "}
+            Price - {" "}
             <span className="text-grey">{`N ${product.product_price}`}</span>
           </p>
 
-          <p>{product.product_tenure}</p>
+          <p>Product Tenure - {product.product_tenure}</p>
 
-          <p>{product.product_stock}</p>
+          <p>Product Stock - {product.product_stock}</p>
         </div>
       </div>
       <button className="btn btn-primary mt-3" onClick={requestLoan}>

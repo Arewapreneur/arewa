@@ -55,7 +55,7 @@ const Process = ({ close, product }) => {
               <p className="product_stock">39 Available</p>
               <p className="product_term">32 Months</p>
             </div>
-            <p className="product_price">$125.00</p>
+            <p className="product_price">N{product.product_price}</p>
 
             <button className="btn btn-primary mt-3" onClick={requestLoan}>
               Send Request

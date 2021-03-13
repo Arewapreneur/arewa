@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <Layout>
       <Head>
-          <title>ArewaPrenuer</title>
+          <title>ArewaPrenuers</title>
       </Head>
       <div className={styles.container}>
         <main className={styles.main}>

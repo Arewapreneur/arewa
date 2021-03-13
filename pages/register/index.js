@@ -108,7 +108,7 @@ const Index = () => {
   return (
     <Layout>
       <Head>
-          <title>ArewaPrenuer</title>
+          <title>ArewaPrenuers</title>
       </Head>
       <div className="register">
         <div id="recaptcha-container"></div>

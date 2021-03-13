@@ -33,7 +33,7 @@ const Nav = () => {
     <header className="header">
       <div className="wrap">
         <Link href="/">
-          <div className="logo">ArewaPreneur</div>
+          <div className="logo">ArewaPreneurs</div>
         </Link>
         {login ? (
           <div className="menu-nav">

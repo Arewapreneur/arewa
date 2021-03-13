@@ -27,7 +27,7 @@ export default function Home() {
       <div className={styles.container}>
         <main className={styles.main}>
           <h4 className="mb-1">Welcome to</h4>
-          <h1 className="home-heading mb-3 text-dark">ArewaPrenuer</h1>
+          <h1 className="home-heading mb-3 text-dark">ArewaPrenuers</h1>
           <p className="sub-heading mb-2 text-center">Your Number 1 Business Support</p>
           <p className="text-mini mb-2 text-primary font-weight-bold">
             Login or Signup to continue

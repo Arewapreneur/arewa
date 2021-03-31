@@ -108,7 +108,7 @@ const Index = () => {
   return (
     <Layout>
       <Head>
-          <title>ArewaPrenuers</title>
+          <title>ArewaCash</title>
       </Head>
       <div className="register">
         <div id="recaptcha-container"></div>
@@ -158,8 +158,8 @@ const Index = () => {
               </a>
             </Link>
           </p>
-        </div>
       </div>
+    </div>
     </Layout>
   );
 };

@@ -20,10 +20,10 @@ const Process = ({ close, product }) => {
   const requestLoan = () => {
     store.loading = true;
     console.log(snapshot.userInfo);
-    console.log(snapshot.user.uid);
+    console.log(snapshot.user.phoneNumber);
     firebase
       .database()
-      .ref("userinfo/" + snapshot.user.uid)
+      .ref("userinfo/" + snapshot.user.phoneNumber)
       .set({
         ...snapshot.userInfo,
         amountborrowed: loanInfo.product.product_price,

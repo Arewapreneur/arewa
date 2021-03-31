@@ -44,7 +44,7 @@ const Process = ({ close }) => {
     store.loading = true;
     firebase
       .database()
-      .ref("userinfo/" + snapshot.user.uid)
+      .ref("userinfo/" + snapshot.user.phoneNumber)
       .set({
         ...snapshot.userInfo,
         amountborrowed: loanInfo.amount,

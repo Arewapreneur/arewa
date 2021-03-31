@@ -19,7 +19,7 @@ const Dashboard = () => {
     firebase
       .database()
       .ref("userinfo")
-      .child(user.uid)
+      .child(user.phoneNumber)
       .on("value", (snapshot) => {
         data = snapshot.val();
         store.userInfo = data;
@@ -33,7 +33,8 @@ const Dashboard = () => {
   };
 
   const createUserInfo = (user) => {
-    firebase.database().ref("userinfo").child(user.uid).set(
+    console.log(user);
+    firebase.database().ref("userinfo").child(user.phoneNumber).set(
       {
         amountborrowed: 0,
         payment_due: 0,

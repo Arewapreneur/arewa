@@ -41,7 +41,7 @@ const Borrow = () => {
     store.loading = true;
     firebase
       .database()
-      .ref("userinfo/" + snapshot.user.uid)
+      .ref("userinfo/" + snapshot.user.phoneNumber)
       .set({
         ...snapshot.userInfo,
         amountborrowed: 0,
@@ -93,22 +93,23 @@ const Borrow = () => {
         <div className="request ">
           <h5 className="heading mb-2">Repay your loan</h5>
           <p className="text-gray">
-            You can repay your loan with ease using any any method that is convinient for you.
+            You can repay your loan with ease using any any method that is
+            convinient for you.
           </p>
           <div className="btn-holder-2">
             <button
-            //   className="btn btn-primary"
-            //   disabled={snapshot.userInfo?.payment_due !== 0}
-            //   onClick={handleApply}
-            // >
-            //   Request Loan
-            // </button>
-            // <button
               className="btn btn-primary "
               disabled={snapshot.userInfo?.amountborrowed === 0}
               onClick={() => setPayment(!payment)}
             >
-              Repay Loan
+              Pay with ATM
+            </button>
+            <button
+              className="btn btn-primary"
+              disabled={snapshot.userInfo?.payment_due !== 0}
+              onClick={handleApply}
+            >
+              Pay with ArewaCard
             </button>
           </div>
         </div>

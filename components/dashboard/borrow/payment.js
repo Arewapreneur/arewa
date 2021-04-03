@@ -70,7 +70,18 @@ const Payment = ({ action }) => {
         //   justifyContent: "space-between",
         // }}
       >
-
+      <p
+        className="text-mini text-primary mb-1"
+        style={{ textAlign: "left" }}
+      >
+        Amount
+      </p>
+      <input
+        type="number"
+        placeholder="100"
+        name="amount"
+        style={{ fontSize: "20px" }}
+      />
       </div>
       <button className="btn btn-primary mt-2" onClick={action}>
         Pay Now

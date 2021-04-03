@@ -162,7 +162,7 @@ const Index = () => {
             <Modal>
               <div className="pop-message">
                 <img src={face} height={55} width={55} />
-                <h1 className="heading mb-3">Mun gode!</h1>
+                <h1 className="heading mb-3">Thank you!</h1>
                 <p className="sub-heading">Account Updated</p>
                 <p className="text-gray mt-1">
                   Your account details was updated successfully!

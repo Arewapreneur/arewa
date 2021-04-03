@@ -46,13 +46,13 @@ const Payment = ({ action }) => {
 
   return step === 1 ? (
     <div className="pop-payment">
-      <p className="text-mini mb-1">Enter your card details to pay</p>
+      <p className="text-mini mb-1">ENTER YOUR AREWA CARD PIN TO PAY</p>
       <div className="outline mb-2">
         <p
           className="text-mini text-primary mb-1"
           style={{ textAlign: "left" }}
         >
-          CARD NUMBER
+          Card Pin
         </p>
         <input
           type="text"
@@ -64,45 +64,13 @@ const Payment = ({ action }) => {
         />
       </div>
       <div
-        style={{
-          display: "flex",
-          width: "100%",
-          justifyContent: "space-between",
-        }}
+        // style={{
+        //   display: "flex",
+        //   width: "100%",
+        //   justifyContent: "space-between",
+        // }}
       >
-        <div className="outline" style={{ width: "45%" }}>
-          <p
-            className="text-mini text-primary mb-1"
-            style={{ textAlign: "left" }}
-          >
-            CARD EXPIRY
-          </p>
-          <input
-            type="text"
-            placeholder="MM / YY"
-            name="expiry"
-            maxLength={7}
-            style={{ fontSize: "20px" }}
-            value={paymentInfo.expiry}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="outline" style={{ width: "45%" }}>
-          <p
-            className="text-mini text-primary mb-1"
-            style={{ textAlign: "left" }}
-          >
-            CVV
-          </p>
-          <input
-            type="number"
-            placeholder="123"
-            name="cvv"
-            style={{ fontSize: "20px" }}
-            value={paymentInfo.cvv}
-            onChange={handleChange}
-          />
-        </div>
+
       </div>
       <button className="btn btn-primary mt-2" onClick={action}>
         Pay Now
